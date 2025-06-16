@@ -57,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (_, session) => { // FIXED HERE: replaced (event, session) with (_, session)
         setSession(session);
         setUser(session?.user ?? null);
         
@@ -101,7 +101,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (error) throw error;
 
       if (data.user) {
-        // Create profile
         const { error: profileError } = await supabase
           .from('profiles')
           .insert({
