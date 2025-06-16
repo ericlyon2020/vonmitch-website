@@ -1,0 +1,11 @@
+# Ignore environment variable files
+.env
+
+# Ignore node_modules
+node_modules/
+
+# Vite build output
+dist/
+
+# Optional: VSCode settings
+.vscode/
