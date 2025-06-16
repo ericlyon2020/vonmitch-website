@@ -1,3 +1,4 @@
+import React from 'react'; // ✅ Required for older TS versions or if not using react-jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
@@ -17,7 +18,7 @@ import { ManageAppointments } from './pages/admin/ManageAppointments';
 import { ManageClients } from './pages/admin/ManageClients';
 import { ConsultationRequests } from './pages/admin/ConsultationRequests';
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <AuthProvider>
       <Router>
@@ -27,7 +28,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            
+
             {/* Protected Client Routes */}
             <Route path="/dashboard" element={
               <ProtectedRoute>
@@ -49,7 +50,7 @@ function App() {
                 <ClientProfile />
               </ProtectedRoute>
             } />
-            
+
             {/* Admin Routes */}
             <Route path="/admin" element={
               <AdminRoute>
@@ -77,6 +78,6 @@ function App() {
       </Router>
     </AuthProvider>
   );
-}
+};
 
 export default App;
